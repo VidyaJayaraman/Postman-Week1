@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "9b15ce30-cfff-4ca5-903b-2ec8b3f6adf9",
+		"name": "ServiceNowCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24504882"
+	},
+	"item": [
+		{
+			"name": "Create_Incident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Incident number\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"INC\");\r",
+							"});\r",
+							"\r",
+							"//Get the sysid from Post - create incident\r",
+							"\r",
+							"// Save it to global variable \r",
+							"//Get the complete Json response\r",
+							"Resp = pm.response.json();\r",
+							"\r",
+							"//Use the Json path to get the value and save it to Sysidd\r",
+							"Sysidd = Resp.result.sys_id;\r",
+							"\r",
+							"//pm.globals.set(\"G_Sysid\",Resp.result.sys_id);\r",
+							"//Save it to the Global variable\r",
+							"\r",
+							"pm.globals.set(\"G_sysid\",Sysidd);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Windows issue\",\"short_description\":\"OS patch problem\"}\r\n"
+				},
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incident_by_Sysid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident/{{G_Systemid}}",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{G_Systemid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Description modified successfully\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Windows box\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Windows box issue\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident/{{G_sysid}}",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{G_sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Company details updated\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Eg 2346778567789\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"company\":\"reference, Eg 2346778567789\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident/{{G_sysid}}",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{G_sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBySysId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful Delete request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202, 202, 204, 205 , 404]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident/{{G_sysid}}",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{G_sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QueryParam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev112055.service-now.com/api/now/table/incident?sysparm_limit=10",
+					"protocol": "https",
+					"host": [
+						"dev112055",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SIT_Env",
+			"value": "dev112055.service-now.com"
+		}
+	]
+}

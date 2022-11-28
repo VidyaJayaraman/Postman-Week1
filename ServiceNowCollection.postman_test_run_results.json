@@ -1,0 +1,204 @@
+{
+	"id": "910a95bf-e794-40e7-b72b-dce285442f16",
+	"name": "ServiceNowCollection",
+	"timestamp": "2022-11-28T14:16:49.979Z",
+	"collection_id": "24504882-9b15ce30-cfff-4ca5-903b-2ec8b3f6adf9",
+	"folder_id": 0,
+	"environment_id": "24504882-d54cf286-1bce-478f-b139-8f8d73f9a927",
+	"totalPass": 6,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "bf588d27-d1f6-49ec-8eac-33e06ceef8a8",
+			"name": "Create_Incident",
+			"url": "https://dev112055.service-now.com/api/now/table/incident",
+			"time": 478,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Incident number": true
+			},
+			"testPassFailCounts": {
+				"Incident number": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				478
+			],
+			"allTests": [
+				{
+					"Incident number": true
+				}
+			]
+		},
+		{
+			"id": "67301e26-0e57-4ea4-90cd-b3462c262a1a",
+			"name": "Incident_by_Sysid",
+			"url": "https://dev112055.service-now.com/api/now/table/incident/d1db27b797131110d148bc400153af82",
+			"time": 496,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				496
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "b25361f9-2ed0-4cfc-a369-03ce1482ac82",
+			"name": "New Request",
+			"url": "https://dev112055.service-now.com/api/now/table/incident/015ee3f797131110d148bc400153af93",
+			"time": 530,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Description modified successfully": true
+			},
+			"testPassFailCounts": {
+				"Description modified successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				530
+			],
+			"allTests": [
+				{
+					"Description modified successfully": true
+				}
+			]
+		},
+		{
+			"id": "5fa24a26-d39b-4411-aa28-a54b860e84c9",
+			"name": "New Request",
+			"url": "https://dev112055.service-now.com/api/now/table/incident/015ee3f797131110d148bc400153af93",
+			"time": 510,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Company details updated": true
+			},
+			"testPassFailCounts": {
+				"Company details updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				510
+			],
+			"allTests": [
+				{
+					"Company details updated": true
+				}
+			]
+		},
+		{
+			"id": "a2fe00e9-c363-4c70-a923-33650709be9d",
+			"name": "DeleteBySysId",
+			"url": "https://dev112055.service-now.com/api/now/table/incident/015ee3f797131110d148bc400153af93",
+			"time": 408,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Successful Delete request": true
+			},
+			"testPassFailCounts": {
+				"Successful Delete request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				408
+			],
+			"allTests": [
+				{
+					"Successful Delete request": true
+				}
+			]
+		},
+		{
+			"id": "c9ea4504-b1b9-4714-abed-7700d2e8b52e",
+			"name": "QueryParam",
+			"url": "https://dev112055.service-now.com/api/now/table/incident?sysparm_limit=10",
+			"time": 507,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				507
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2929,
+	"collection": {
+		"requests": [
+			{
+				"id": "bf588d27-d1f6-49ec-8eac-33e06ceef8a8",
+				"method": "POST"
+			},
+			{
+				"id": "67301e26-0e57-4ea4-90cd-b3462c262a1a",
+				"method": "GET"
+			},
+			{
+				"id": "b25361f9-2ed0-4cfc-a369-03ce1482ac82",
+				"method": "PUT"
+			},
+			{
+				"id": "5fa24a26-d39b-4411-aa28-a54b860e84c9",
+				"method": "PATCH"
+			},
+			{
+				"id": "a2fe00e9-c363-4c70-a923-33650709be9d",
+				"method": "DELETE"
+			},
+			{
+				"id": "c9ea4504-b1b9-4714-abed-7700d2e8b52e",
+				"method": "GET"
+			}
+		]
+	}
+}
